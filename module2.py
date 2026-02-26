@@ -8,6 +8,10 @@ df = pd.read_csv("soc-redditHyperlinks-body.tsv", sep="\t")
 toxic_subreddits = df[df["LINK_SENTIMENT"] == -1]
 print(f"Toxic subreddits: {len(toxic_subreddits)}")
 
+#Data Validation
+df_clean = df.dropna()
+df_clean = df_clean.drop_duplicates()
+
 #Graph of Network
 G = nx.from_pandas_edgelist (
     toxic_subreddits,
